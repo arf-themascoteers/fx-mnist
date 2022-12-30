@@ -1,8 +1,10 @@
+import os
 import torch
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+from torchvision.datasets import ImageFolder
 
 
 class DatasetManager:
@@ -12,17 +14,15 @@ class DatasetManager:
             transforms.ToTensor(),
             transforms.Resize((224,224)),
         ])
-        self.mnist_data = datasets.Caltech256(root='./data', download=True, transform=transform)
-        print(len(self.mnist_data))
-        filtered = []
-        for i in self.mnist_data:
-            if i[0].shape[0] == 3:
-                filtered.append(i)
-        self.mnist_data = filtered
-        print(len(self.mnist_data))
+        parent_folder = r"D:\downloads\imagenet-mini"
+        child_folder = "train"
+        if not train:
+            child_folder = "val"
+        path = os.path.join(parent_folder, child_folder)
+        self.dataset = ImageFolder(root=path, transform=transform)
 
     def get_ds(self):
-        return self.mnist_data
+        return self.dataset
 
 
 if __name__ == "__main__":

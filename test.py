@@ -26,10 +26,10 @@ def test(device):
         total += x.shape[0]
 
         for a_y in y:
-            true_ys.append(a_y.detach().numpy())
+            true_ys.append(a_y.detach().cpu().numpy())
 
         for a_y in pred_ys:
-            pred_ys.append(a_y.detach().numpy())
+            pred_ys.append(a_y.detach().cpu().numpy())
 
     print(f'Total:{total}, Correct:{correct}, Accuracy:{correct/total*100:.2f}')
     print(r2_score(true_ys, pred_ys))

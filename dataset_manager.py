@@ -9,7 +9,7 @@ from torchvision.datasets import ImageFolder
 
 class DatasetManager:
     def __init__(self, train=True):
-        torch.manual_seed(0)
+        torch.manual_seed(1)
         transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Resize((224,224)),

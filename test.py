@@ -5,7 +5,7 @@ from sklearn.metrics import r2_score
 
 
 def test(device):
-    batch_size = 100
+    batch_size = 25
     cid = DatasetManager(train=False).get_ds()
     dataloader = DataLoader(cid, batch_size=batch_size, shuffle=True)
     model = torch.load("models/cnn_trans.h5")

@@ -8,7 +8,7 @@ from our_machine import OurMachine
 
 
 def train(device):
-    batch_size = 100
+    batch_size = 25
     cid = DatasetManager(train=True).get_ds()
     dataloader = DataLoader(cid, batch_size=batch_size, shuffle=True)
     model = OurMachine()
